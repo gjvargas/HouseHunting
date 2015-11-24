@@ -16,12 +16,12 @@ class Colony:
         for ant in self.ants:
             ant.recruited = False
             ant.active = (ant.nest.quality == 1)
-            if ant.active and (random.random() < (ant.nest.getPopulation() / self.size)):
+            if ant.active and (random.random() < (1.0 * ant.nest.getPopulation() / self.size)):
                 recruitingAnts.append(ant)
         pairs = self.recruit(recruitingAnts)
         for ant in pairs:
             recruitedAnt = pairs[ant]
-            recruitedAnt.nest.removeAnt(ant)
+            recruitedAnt.nest.removeAnt(recruitedAnt)
             recruitedAnt.nest = ant.nest
             ant.nest.addAnt(recruitedAnt)
             recruitedAnt.active = True
@@ -45,6 +45,9 @@ class Colony:
         
 
 
-    def run(self):
-        while(True):
+    def go(self):
+        count = 0
+        while self.size not in [nest.getPopulation() for nest in self.nests]:
+            print 'round ' + str(count)
+            count += 1
             self.step()
