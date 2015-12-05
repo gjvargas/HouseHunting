@@ -5,7 +5,7 @@ import copy
 
 class Colony:
     def __init__(self, size, numNests):
-        self.nests = [Nest(i, random.randint(0,1)) for i in range(numNests)]
+        self.nests = [Nest(i, random.random()) for i in range(numNests)]
         self.ants = [Ant(i, random.choice(self.nests[1:])) for i in range(size)]
         for ant in self.ants:
             ant.nest.addAnt(ant)
@@ -15,7 +15,7 @@ class Colony:
         recruitingAnts = []
         for ant in self.ants:
             ant.recruited = False
-            ant.active = (ant.nest.quality == 1)
+            ant.active = (ant.nest.quality > random.random())
             if ant.active and (random.random() < (1.0 * ant.nest.getPopulation() / self.size)):
                 recruitingAnts.append(ant)
         pairs = self.recruit(recruitingAnts)
