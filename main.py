@@ -1,5 +1,6 @@
 from nonbinary import *
 import pickle
+import numpy, scipy.io
 
 def main():
     for x in range(30):
@@ -13,6 +14,7 @@ def main():
             dataPoint = {"ants": numAnts, "nests": numNests, "steps": numSteps, "chosen": chosen_quality, "best": best_quality}
             output.append(dataPoint)
             # print("just finished trial", numAnts, numNests)
+        scipy.io.savemat('resultsMat/ants'+str(i)+'.mat', mdict={'data': output})
         pickle.dump(output, open("results/ants" + str(x) + ".p", "w"))
         print 'finished', x
 
