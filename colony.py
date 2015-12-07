@@ -25,9 +25,6 @@ class Colony:
             recruitedAnt.nest = ant.nest
             ant.nest.addAnt(recruitedAnt)
             recruitedAnt.active = True
-        print [nest.getPopulation() for nest in self.nests]
-
-
 
     def recruit(self, recruitingAnts):
         pairs = {}
@@ -41,13 +38,9 @@ class Colony:
                     pairs[ant] = recruitedAnt
         return pairs
 
-        
-        
-
-
     def go(self):
         count = 0
         while self.size not in [nest.getPopulation() for nest in self.nests]:
-            print 'round ' + str(count)
             count += 1
             self.step()
+        return count
