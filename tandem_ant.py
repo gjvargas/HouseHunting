@@ -25,13 +25,33 @@ class Ant:
     def recruit(self, colonySize):
         if self.timeToLocation == 0 and self.location.uid == 0 and self.active and (random.random() < (1.0 * self.nest.getPopulation() / colonySize)):
             recruitee = self.location.recruit(self.uid)
-            pair = [recruitee, self]
-            for ant in pair:
-                ant.recruitable = False
-                ant.departForNest(1, self.nest)
+            self.guideToNest(recruitee, 1, self.nest)
+
+    def guideToNest(self, recruitee, distance, nest):
+        self.oldNest.removeAnt(self)
+        recruitee.oldNest.removeAnt(recruitee)
+
+        self.timeToLocation = distance * 3
+        recruitee.timeToLocation = distance * 3
+
+        self.location = nest
+        recruitee.location = nest
+
+    def carryToNest(self, recruitee, distance, nest):
+        self.oldNest.removeAnt(self)
+        recruitee.oldNest.removeAnt(recruitee)
+
+        recruitee.oldNest = None
+
+        self.timeToLocation = distance
+        recruitee.timeToLocation = distance
+
+        self.location = nest
+        recruitee.location = nest
 
     def departForNest(self, distance, nest):
-        self.oldNest.removeAnt(self)
-        self.timeToLocation = distance
-        self.location = nest
+        if nest:
+            self.oldNest.removeAnt(self)
+            self.timeToLocation = distance
+            self.location = nest
 

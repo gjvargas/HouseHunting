@@ -1,19 +1,32 @@
-from ant import *
+from tandem_ant import *
+import random
 
 class Nest:
-    def __init__(self, uid, quality):
+    def __init__(self, uid):
         self.uid = uid
         self.ants = []
-        self.quality = quality
+        self.quality = random.randint(0,1)
 
     def addAnt(self, ant):
-        self.ants.append(ant)
+        if ant not in self.ants:
+            if self.uid != 0:
+                ant.nest.removeAnt(ant)
+                ant.nest = self
+            self.ants.append(ant)
 
     def removeAnt(self, ant):
-        self.ants.remove(ant)
+        if ant in self.ants:
+            self.ants.remove(ant)
 
     def getPopulation(self):
         return len(self.ants)
 
     def getQuality(self):
         return self.quality
+
+    def recruit(self, recruiterUid):
+        assert self.uid == 0
+        output = random.choice(self.ants)
+        while (output == recruiterUid):
+            output = random.choice(self.ants)
+        return output

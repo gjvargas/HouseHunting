@@ -2,6 +2,11 @@ from colony import *
 import pickle
 
 def main():
+    colony = Colony(100, 20)
+    numSteps = colony.go()
+    print numSteps
+    
+    '''
     for x in range(30):
         trials = [(i * 50, 20) for i in range(1, 21)]
         output = []
@@ -13,7 +18,7 @@ def main():
             output.append(dataPoint)
             print("just finished trial", numAnts, numNests)
         pickle.dump(output, open("ants" + str(x) + ".p", "w"))
-    
+    '''
 
 if __name__ == "__main__":
     main()
