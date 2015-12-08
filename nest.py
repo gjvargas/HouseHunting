@@ -1,4 +1,4 @@
-from tandem_ant import *
+from ant import *
 import random
 
 class Nest:
@@ -6,6 +6,9 @@ class Nest:
         self.uid = uid
         self.ants = []
         self.quality = random.randint(0,1)
+        if self.uid == 0:
+            self.quality = 0
+        self.distance = 1
 
     def addAnt(self, ant):
         if ant not in self.ants:

@@ -1,4 +1,4 @@
-from tandem_ant import *
+from ant import *
 from nest import *
 import random
 import copy
