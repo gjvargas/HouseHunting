@@ -1,8 +1,16 @@
 from colony import *
 import pickle
+import sys
+from ant import Ant
+from tandemAnt import TandemAnt
+from nest import Nest
 
-def main():
-    colony = Colony(100, 20)
+def main(argv):
+    numAnts = int(argv[0])
+    numNests = int(argv[1])
+    antType = eval(argv[2])
+    nestType = eval(argv[3])
+    colony = Colony(numAnts, numNests, antType, nestType)
     numSteps = colony.go()
     print numSteps
     
@@ -21,4 +29,4 @@ def main():
     '''
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

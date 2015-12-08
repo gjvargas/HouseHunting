@@ -8,12 +8,12 @@ class Ant:
         nests[0].addAnt(self)
         self.nest = random.choice(nests[1:])
         self.location = self.nest
-        self.active = (self.nest.getQuality() == 1)
+        self.active = (random.random() < self.nest.getQuality())
         self.recruitable = False 
         self.timeToLocation = self.nest.distance
 
     def step(self):
-        self.active = (self.nest.getQuality() == 1)
+        self.active = (random.random() < self.nest.getQuality())
         if self.timeToLocation > 0:
             self.timeToLocation -= 1
         if self.timeToLocation == 0:
@@ -24,8 +24,7 @@ class Ant:
                 self.returnToOldNest()
 
     def shouldTandemRun(self, colonySize):
-        populationProportion = 1.0 * self.nest.getPopulation() / colonySize
-        return populationProportion > .5 and random.random() < populationProportion ** 2
+        return False
 
     def recruit(self, colonySize):
         if self.timeToLocation == 0 and self.location.uid == 0 and self.active and (random.random() < (1.0 * self.nest.getPopulation() / colonySize)):

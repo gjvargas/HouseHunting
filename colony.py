@@ -1,12 +1,14 @@
-from ant import *
-from nest import *
 import random
 import copy
+from ant import *
+from tandemAnt import *
+from nest import *
+from nonbinaryNest import *
 
 class Colony:
-    def __init__(self, size, numNests):
-        self.nests = [Nest(i) for i in range(numNests)]
-        self.ants = [Ant(i, self.nests) for i in range(size)]
+    def __init__(self, size, numNests, antType, nestType):
+        self.nests = [nestType(i) for i in range(numNests)]
+        self.ants = [antType(i, self.nests) for i in range(size)]
         for ant in self.ants:
             ant.nest.addAnt(ant)
         self.size = size
