@@ -10,7 +10,7 @@ class Ant:
         self.location = self.nest
         self.active = (self.nest.getQuality() == 1)
         self.recruitable = False 
-        self.timeToLocation = 1
+        self.timeToLocation = self.nest.distance
 
     def step(self):
         self.active = (self.nest.getQuality() == 1)
