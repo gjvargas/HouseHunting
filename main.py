@@ -6,27 +6,25 @@ from tandemAnt import TandemAnt
 from nest import Nest
 
 def main(argv):
-    numAnts = int(argv[0])
-    numNests = int(argv[1])
-    antType = eval(argv[2])
-    nestType = eval(argv[3])
-    colony = Colony(numAnts, numNests, antType, nestType)
-    numSteps = colony.go()
-    print numSteps
+    numTrials = int(argv[0])
+    numAnts = int(argv[1])
+    numNests = int(argv[2])
+    antType = eval(argv[3])
+    nestType = eval(argv[4])    
     
-    '''
-    for x in range(30):
-        trials = [(i * 50, 20) for i in range(1, 21)]
+    for x in range(numTrials):
+        trials = [(i, numNests) for i in range(50, numAnts+1, 50)]
         output = []
         for numAnts, numNests in trials:
             print("starting trial", numAnts, numNests)
-            colony = Colony(numAnts, numNests)
-            numSteps = colony.go()
-            dataPoint = {"ants": numAnts, "nests": numNests, "steps": numSteps}
+            colony = Colony(numAnts, numNests, antType, nestType)
+            numSteps, bestQuality, chosenNest = colony.go()
+            dataPoint = {"ants": numAnts, "nests": numNests, "steps": numSteps,\
+                "bestQuality": bestQuality, "chosenNest": chosenNest}
             output.append(dataPoint)
             print("just finished trial", numAnts, numNests)
-        pickle.dump(output, open("ants" + str(x) + ".p", "w"))
-    '''
+        pickle.dump(output, open("results/ants" + str(x) + ".p", "w"))
+    
 
 if __name__ == "__main__":
     main(sys.argv[1:])

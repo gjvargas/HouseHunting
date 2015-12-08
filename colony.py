@@ -20,9 +20,11 @@ class Colony:
 
     def go(self):
         count = 0
+        best_quality = max([nest.quality for nest in self.nests])
         while self.size not in [nest.getPopulation() for nest in self.nests[1:]]:
-            print [nest.getPopulation() for nest in self.nests]
+            # print [nest.getPopulation() for nest in self.nests]
             count += 1
             self.step()
-        print [nest.getPopulation() for nest in self.nests]
-        return count
+        # print [nest.getPopulation() for nest in self.nests]
+        chosen_nest = [nest for nest in self.nests if nest.getPopulation() == self.size][0]
+        return count, best_quality, chosen_nest
