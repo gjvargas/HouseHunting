@@ -13,6 +13,7 @@ def main(argv):
     nestType = eval(argv[4])    
     
     for x in range(numTrials):
+        print 'starting trial', x
         trials = [(i, numNests) for i in range(50, numAnts+1, 50)]
         output = []
         for numAnts, numNests in trials:
@@ -24,6 +25,7 @@ def main(argv):
             output.append(dataPoint)
             print("just finished trial", numAnts, numNests)
         pickle.dump(output, open("results/ants" + str(x) + ".p", "w"))
+        print 'finished trial', x
     
 
 if __name__ == "__main__":
