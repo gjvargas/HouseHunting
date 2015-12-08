@@ -1,10 +1,11 @@
 from ant import *
 
 class Nest:
-    def __init__(self, uid, quality):
+    def __init__(self, uid, quality, distance):
         self.uid = uid
         self.ants = []
         self.quality = quality
+        self.distance = distance
 
     def addAnt(self, ant):
         self.ants.append(ant)
@@ -17,3 +18,6 @@ class Nest:
 
     def getQuality(self):
         return self.quality
+
+    def getDistance(self):
+        return self.distance

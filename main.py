@@ -8,12 +8,13 @@ def main():
         trials = [(i * 50, 20) for i in range(1, 21)]
         output = []
         for numAnts, numNests in trials:
-            # print("starting trial", numAnts, numNests)
+            print("starting trial", numAnts, numNests)
             colony = Colony(numAnts, numNests)
-            numSteps, chosen_quality, best_quality = colony.go()
-            dataPoint = {"ants": numAnts, "nests": numNests, "steps": numSteps, "chosen": chosen_quality, "best": best_quality}
+            numSteps, chosen_nest, best_quality = colony.go()
+            dataPoint = {"ants": numAnts, "nests": numNests, "steps": numSteps,\
+                 "chosen": chosen_nest, "best_quality": best_quality}
             output.append(dataPoint)
-            # print("just finished trial", numAnts, numNests)
+            print("just finished trial", numAnts, numNests)
         pickle.dump(output, open("results/ants" + str(x) + ".p", "w"))
         print 'finished', x
 

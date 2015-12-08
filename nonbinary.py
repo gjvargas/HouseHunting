@@ -5,17 +5,19 @@ import copy
 
 class Colony:
     def __init__(self, size, numNests):
-        self.nests = [Nest(i, random.random()) for i in range(numNests)]
+        self.nests = [Nest(i, random.random(), random.randint(1,5)) for i in range(numNests)]
         self.ants = [Ant(i, random.choice(self.nests[1:])) for i in range(size)]
         for ant in self.ants:
             ant.nest.addAnt(ant)
+            ant.travelling = ant.nest.distance
         self.size = size
 
     def step(self):
         recruitingAnts = []
         for ant in self.ants:
+            ant.step()
             ant.recruited = False
-            ant.active = (ant.nest.quality > random.random())
+            ant.active = (ant.nest.quality > random.random()) and ant.travelling == 0
             if ant.active and (random.random() < (1.0 * ant.nest.getPopulation() / self.size)):
                 recruitingAnts.append(ant)
         pairs = self.recruit(recruitingAnts)
@@ -24,6 +26,8 @@ class Colony:
             recruitedAnt.nest.removeAnt(recruitedAnt)
             recruitedAnt.nest = ant.nest
             ant.nest.addAnt(recruitedAnt)
+            recruitedAnt.travelling = ant.nest.distance
+            ant.travelling = ant.nest.distance
             recruitedAnt.active = True
 
     def recruit(self, recruitingAnts):
@@ -39,11 +43,11 @@ class Colony:
         return pairs
 
     def go(self):
-        count = 0
+        count = 0   
         best_quality = max([nest.quality for nest in self.nests])
         while self.size not in [nest.getPopulation() for nest in self.nests]:
             count += 1
             self.step()
         nest_index = [nest.getPopulation() for nest in self.nests].index(self.size)
-        chosen_nest_quality = self.nests[nest_index]
-        return count, chosen_nest_quality, best_quality
+        chosen_nest = self.nests[nest_index]
+        return count, chosen_nest, best_quality
