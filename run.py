@@ -17,12 +17,14 @@ def main(argv):
 
     output = []
     for i in range(numTrials):
+        # print("Starting Trial", i)
         colony = Colony(numAnts, numNests, antType, nestType)
         numSteps, bestQuality, chosenNest = colony.go()
         dataPoint = {"ants": numAnts, "nests": numNests, "steps": numSteps, \
             "bestQuality": bestQuality, "chosenNest": chosenNest, "trial": i}
         output.append(dataPoint)
-    pickle.dump(output, open("results/" + str(numAnts) + "ants" + argv[4] + ".p", "w"))
+        # print("Finished Trial", i)
+    pickle.dump(output, open(argv[4][:-4] + "TandemResults/" + str(numAnts) + "ants.p", "w"))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
