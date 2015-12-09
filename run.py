@@ -20,7 +20,7 @@ def main(argv):
         dataPoint = {"ants": numAnts, "nests": numNests, "steps": numSteps, \
             "bestQuality": bestQuality, "chosenNest": chosenNest, "trial": i}
         output.append(dataPoint)
-    pickle.dump(output, open("results/" + str(numAnts) + "ants" + str(numNests) + "nests.p", "w"))
+    pickle.dump(output, open("results/" + str(numAnts) + "ants.p", "w"))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
