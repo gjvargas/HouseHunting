@@ -8,6 +8,8 @@ NUM_STEPS=$(($MAX_NUM_ANTS / $NUM_ANTS_STEP_SIZE))
 
 for ((i=$NUM_ANTS_STEP_SIZE; i <= $MAX_NUM_ANTS; i+=$NUM_ANTS_STEP_SIZE))
 do
-    echo $i
     python run.py $NUM_TRIALS $i $NUM_NESTS Ant Nest &
+    python run.py $NUM_TRIALS $i $NUM_NESTS Ant NonbinaryNest &
+    python run.py $NUM_TRIALS $i $NUM_NESTS Ant DistanceNest &
+    python run.py $NUM_TRIALS $i $NUM_NESTS Ant NonbinaryDistanceNest &
 done

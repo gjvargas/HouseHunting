@@ -29,7 +29,9 @@ class Nest:
 
     def recruit(self, recruiterUid):
         assert self.uid == 0
-        output = random.choice(list(self.ants))
-        while (output == recruiterUid):
+        ants = list(self.ants)
+        if len(ants) > 1:
             output = random.choice(list(self.ants))
-        return output
+            while (output == recruiterUid):
+                output = random.choice(list(self.ants))
+            return output

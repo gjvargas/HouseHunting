@@ -29,10 +29,11 @@ class Ant:
     def recruit(self, colonySize):
         if self.timeToLocation == 0 and self.location.uid == 0 and self.active and (random.random() < (1.0 * self.nest.getPopulation() / colonySize)):
             recruitee = self.location.recruit(self.uid)
-            if (self.shouldTandemRun(colonySize)):
-                self.carryToNest(recruitee)
-            else:
-                self.guideToNest(recruitee)
+            if recruitee is not None:
+                if (self.shouldTandemRun(colonySize)):
+                    self.carryToNest(recruitee)
+                else:
+                    self.guideToNest(recruitee)
 
     def guideToNest(self, recruitee):
         self.oldNest.removeAnt(self)

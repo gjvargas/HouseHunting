@@ -4,6 +4,8 @@ import sys
 from ant import Ant
 from tandemAnt import TandemAnt
 from nest import Nest
+from distanceNest import DistanceNest
+from nonbinaryDistanceNest import NonbinaryDistanceNest
 
 def main(argv):
     numTrials = int(argv[0])
@@ -20,7 +22,7 @@ def main(argv):
         dataPoint = {"ants": numAnts, "nests": numNests, "steps": numSteps, \
             "bestQuality": bestQuality, "chosenNest": chosenNest, "trial": i}
         output.append(dataPoint)
-    pickle.dump(output, open("results/" + str(numAnts) + "ants.p", "w"))
+    pickle.dump(output, open("results/" + str(numAnts) + "ants" + argv[4] + ".p", "w"))
 
 if __name__ == "__main__":
     main(sys.argv[1:])
