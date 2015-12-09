@@ -6,8 +6,8 @@ MAX_NUM_ANTS=2000
 NUM_ANTS_STEP_SIZE=50
 NUM_STEPS=$(($MAX_NUM_ANTS / $NUM_ANTS_STEP_SIZE))
 
-for i in {1..50}
+for ((i=$NUM_ANTS_STEP_SIZE; i <= $MAX_NUM_ANTS; i+=$NUM_ANTS_STEP_SIZE))
 do
-    numAnts=$(($i * $NUM_ANTS_STEP_SIZE))
-    python run.py $NUM_TRIALS $numAnts $NUM_NESTS Ant Nest &
+    echo $i
+    python run.py $NUM_TRIALS $i $NUM_NESTS Ant Nest &
 done
