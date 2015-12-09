@@ -16,6 +16,7 @@ class Colony:
     def step(self):
         for ant in self.ants:
             ant.step()
+        for ant in self.ants:
             ant.recruit(self.size)
 
     def go(self):

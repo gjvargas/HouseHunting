@@ -11,7 +11,8 @@ def main(argv):
     numNests = int(argv[2])
     antType = eval(argv[3])
     nestType = eval(argv[4])    
-    
+
+
     for x in range(numTrials):
         print 'starting trial', x
         trials = [(i, numNests) for i in range(50, numAnts+1, 50)]

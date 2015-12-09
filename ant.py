@@ -60,6 +60,5 @@ class Ant:
 
     def returnToOldNest(self):
         if self.oldNest:
-            self.oldNest.removeAnt(self)
             self.timeToLocation = self.nest.distance
             self.location = self.oldNest
