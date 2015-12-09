@@ -24,7 +24,7 @@ def main(argv):
             "bestQuality": bestQuality, "chosenNest": chosenNest, "trial": i}
         output.append(dataPoint)
         # print("Finished Trial", i)
-    pickle.dump(output, open(argv[4][:-4] + "TandemResults/" + str(numAnts) + "ants.p", "w"))
+    pickle.dump(output, open(argv[4][:-4] + "Results/" + str(numAnts) + "ants.p", "w"))
 
 if __name__ == "__main__":
     main(sys.argv[1:])

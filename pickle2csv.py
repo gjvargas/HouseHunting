@@ -5,7 +5,7 @@ import sys
 def main(argv):
     d = argv[0]
 
-    csv = open("results/" + d[:-1] + ".csv", "w")
+    csv = open("ResultsCSV/" + d[:-1] + ".csv", "w")
 
     for f in os.listdir(d):
         pickleFile = open(d + f, "rb")
