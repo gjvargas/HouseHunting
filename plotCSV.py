@@ -35,6 +35,9 @@ def main(argv):
     g = sns.lmplot('Number of Ants', 'Number of Steps', dataframe, logx=True)
     g.set(xlim=(0,2050))
     g.set(ylim=(0,160))
+    font = {'fontname':'Arial', 'weight':'bold', 'size':'20'}
+    plt.xlabel('Number of Ants',**font)
+    plt.ylabel('Number of Steps',**font)
 
     sns.plt.show()
 

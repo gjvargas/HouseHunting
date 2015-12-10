@@ -32,9 +32,12 @@ def main(argv):
     print dataframe
 
     #g = sns.regplot('Number of Ants', 'Number of Steps', dataframe, logx=True, hue='Nest Distance')    
-    g = sns.lmplot('Number of Nests', 'Number of Steps', dataframe)
-    #g.set(xlim=(0,2050))
-    #g.set(ylim=(0,160))
+    g = sns.lmplot('Number of Nests', 'Number of Steps', dataframe, logx=True)
+    g.set(xlim=(0,205))
+    g.set(ylim=(0,200))
+    font = {'fontname':'Arial', 'weight':'bold', 'size':'20'}
+    plt.xlabel('Number of Nests',**font)
+    plt.ylabel('Number of Steps',**font)
 
     sns.plt.show()
 
