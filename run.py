@@ -15,7 +15,7 @@ def main(argv):
     antType = eval(argv[3])
     nestType = eval(argv[4])    
 
-    filename = argv[3] + argv[4] + "/" + argv[1] + argv[3] + argv[2] + argv[4] + ".csv"
+    filename = argv[3] + argv[4] + "Thres100/" + argv[1] + argv[3] + argv[2] + argv[4] + ".csv"
     if not os.path.exists(os.path.dirname(filename)):
             os.makedirs(os.path.dirname(filename))
     csv = open(filename, "w")
