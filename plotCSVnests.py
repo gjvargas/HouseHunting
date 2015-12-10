@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import seaborn as sns
 import pandas as pd
 import pickle
@@ -31,11 +32,13 @@ def main(argv):
 
     print dataframe
 
+    mpl.rcParams['xtick.labelsize'] = 20
+    mpl.rcParams['ytick.labelsize'] = 20 
     #g = sns.regplot('Number of Ants', 'Number of Steps', dataframe, logx=True, hue='Nest Distance')    
     g = sns.lmplot('Number of Nests', 'Number of Steps', dataframe, logx=True)
     g.set(xlim=(0,205))
     g.set(ylim=(0,200))
-    font = {'fontname':'Arial', 'weight':'bold', 'size':'20'}
+    font = {'fontname':'Arial','size':'30'}
     plt.xlabel('Number of Nests',**font)
     plt.ylabel('Number of Steps',**font)
 
