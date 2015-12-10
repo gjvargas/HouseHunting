@@ -28,8 +28,9 @@ def main():
 	sns.set_style('darkgrid')
 	lines = plt.plot(ants.transpose(),medians.transpose())
 	plt.legend(lines,['t='+t for t in thresholds],loc='upper left')
-	plt.xlabel('Number of Ants')
-	plt.ylabel('Number of Steps')
+	font = {'fontname':'Arial', 'weight':'bold', 'size':'20'}
+	plt.xlabel('Number of Ants',**font)
+	plt.ylabel('Number of Steps',**font)
 	plt.show()
 
 if __name__ == "__main__":
