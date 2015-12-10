@@ -13,7 +13,8 @@ def main(argv):
         for t in trials:
             csv.write(str(t['ants']) + ',' + str(t['steps']) + ',' + \
             str(t['bestQuality']) + ',' + str(t['chosenNest'].quality) + \
-            ',' + str(t['chosenNest'].distance) + '\n')
+            ',' + str(t['chosenNest'].distance) + ',' + str(t['nests']) + \
+            '\n')
         pickleFile.close()
         
     csv.close()

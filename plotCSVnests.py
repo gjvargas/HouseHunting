@@ -9,32 +9,32 @@ import sys
 def main(argv):
     d = argv[0]
     dataframe = pd.DataFrame()
-    dataframe['Number of Ants'] = []
+    dataframe['Number of Nests'] = []
     dataframe['Number of Steps'] = []
 
     for f in os.listdir(d):
-        ants = []
+        nests = []
         steps = []
 
         csv = open(d + f, "rb")
         for line in csv:
             trial = [x.strip() for x in line.split(',')]
             print trial
-            ants.append(int(trial[0]))
+            nests.append(int(trial[1]))
             steps.append(int(trial[2]))
         
         csv.close()
         df = pd.DataFrame()
-        df['Number of Ants'] = ants
+        df['Number of Nests'] = nests
         df['Number of Steps'] = steps
         dataframe = dataframe.append(df)
 
     print dataframe
 
     #g = sns.regplot('Number of Ants', 'Number of Steps', dataframe, logx=True, hue='Nest Distance')    
-    g = sns.lmplot('Number of Ants', 'Number of Steps', dataframe, logx=True)
-    g.set(xlim=(0,2050))
-    g.set(ylim=(0,160))
+    g = sns.lmplot('Number of Nests', 'Number of Steps', dataframe)
+    #g.set(xlim=(0,2050))
+    #g.set(ylim=(0,160))
 
     sns.plt.show()
 
